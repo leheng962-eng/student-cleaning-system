@@ -1,0 +1,13 @@
+/* Small custom styles used across all pages. */
+body { font-family: "Segoe UI", system-ui, sans-serif; }
+.nav-link { display:block; padding:.6rem .8rem; border-radius:.5rem; }
+.nav-link:hover, .nav-link.active { background:#1d4ed8; }
+.page-title { font-size:1.5rem; font-weight:700; color:#1e3a8a; margin-bottom:1rem; }
+.card { background:#fff; border:1px solid #dbeafe; border-radius:.75rem; padding:1.25rem; }
+.field { display:block; width:100%; margin-top:.25rem; padding:.5rem .75rem; border:1px solid #cbd5e1; border-radius:.5rem; background:#fff; }
+.field:focus { outline:2px solid #2563eb; border-color:#2563eb; }
+.btn { background:#2563eb; color:#fff; padding:.6rem 1rem; border-radius:.5rem; font-weight:600; }
+.btn:hover { background:#1d4ed8; }
+.err { color:#dc2626; }
+.field.invalid { border-color:#dc2626; }
+.toast { position:fixed; right:1rem; bottom:1rem; background:#1e3a8a; color:#fff; padding:.75rem 1rem; border-radius:.5rem; z-index:50; }

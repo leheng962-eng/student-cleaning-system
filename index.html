@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student House Cleaning System</title>
+  <!-- Tailwind CSS from CDN: lets us style with short class names -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- SIDEBAR: hidden on mobile until the menu button is clicked -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 w-60 bg-blue-700 text-white p-4 -translate-x-full md:translate-x-0 transition-transform z-30">
+    <h1 class="text-lg font-bold mb-6">House Cleaning</h1>
+    <nav class="space-y-1">
+      <a href="#" data-page="dashboard" class="nav-link">Dashboard</a>
+      <a href="#" data-page="register" class="nav-link">Register Student</a>
+      <a href="#" data-page="students" class="nav-link">Student List</a>
+      <a href="#" data-page="schedule" class="nav-link">Cleaning Schedule</a>
+    </nav>
+  </aside>
+
+  <main class="md:ml-60 p-4 md:p-8">
+    <button id="menuBtn" class="md:hidden mb-4 px-3 py-2 bg-blue-600 text-white rounded">Menu</button>
+
+    <!-- PAGE 1: DASHBOARD -->
+    <section id="page-dashboard" class="page">
+      <h2 class="page-title">Dashboard</h2>
+      <div id="statCards" class="grid grid-cols-2 lg:grid-cols-5 gap-4"></div>
+    </section>
+
+    <!-- PAGE 2: STUDENT REGISTRATION -->
+    <section id="page-register" class="page hidden">
+      <h2 class="page-title">Register Student</h2>
+      <form id="studentForm" class="card grid md:grid-cols-2 gap-4 max-w-3xl" novalidate>
+        <label>Student ID<input name="studentId" class="field"><small class="err"></small></label>
+        <label>Full name<input name="fullName" class="field"><small class="err"></small></label>
+        <label>Gender
+          <select name="gender" class="field"><option value="">Choose...</option><option>Female</option><option>Male</option><option>Other</option></select>
+          <small class="err"></small></label>
+        <label>Age<input name="age" type="number" class="field"><small class="err"></small></label>
+        <label>Major<input name="major" class="field"><small class="err"></small></label>
+        <label>Phone<input name="phone" class="field"><small class="err"></small></label>
+        <label class="md:col-span-2">Email<input name="email" type="email" class="field"><small class="err"></small></label>
+        <label class="md:col-span-2">Profile picture
+          <input id="photoInput" type="file" accept="image/*" class="field">
+          <img id="photoPreview" class="hidden w-24 h-24 rounded-full object-cover mt-2" alt="Preview">
+          <small id="photoAge" class="block"></small>
+        </label>
+        <button class="btn md:col-span-2">Save student</button>
+      </form>
+    </section>
+
+    <!-- PAGE 3: STUDENT LIST -->
+    <section id="page-students" class="page hidden">
+      <h2 class="page-title">Student List</h2>
+      <input id="searchInput" class="field max-w-sm mb-4" placeholder="Search by name or ID">
+      <div id="studentGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- PAGE 4: CLEANING SCHEDULE -->
+    <section id="page-schedule" class="page hidden">
+      <h2 class="page-title">Cleaning Schedule</h2>
+      <form id="activityForm" class="card grid md:grid-cols-4 gap-4 mb-6" novalidate>
+        <label>Activity
+          <select name="name" class="field">
+            <option>Clean Bedroom (first floor)</option><option>Clean Kitchen</option>
+            <option>Clean Bathroom (second floor)</option><option>Sweep the first floor</option>
+            <option>Sweep the second floor</option><option>Mop the first floor</option>
+            <option>Mop the second floor</option><option>Take out trash</option>
+          </select></label>
+        <label>Student<select name="student" id="studentSelect" class="field"></select><small class="err"></small></label>
+        <label>Date<input name="date" type="date" class="field"><small class="err"></small></label>
+        <label>Start / End
+          <span class="flex gap-2"><input name="start" type="time" class="field"><input name="end" type="time" class="field"></span></label>
+        <button class="btn md:col-span-4">Add to schedule</button>
+      </form>
+      <div class="card overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead><tr class="text-blue-700"><th class="p-2">Date</th><th>Activity</th><th>Student</th><th>Time</th><th>Status</th><th></th></tr></thead>
+          <tbody id="activityBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Order matters: app.js first (shared tools), then the others -->
+  <script src="js/app.js"></script>
+  <script src="js/photos.js"></script>
+  <script src="js/students.js"></script>
+  <script src="js/activities.js"></script>
+</body>
+</html>
